@@ -6,7 +6,7 @@ namespace Task5.Tests
         [TestMethod]
         public void SimpleFormula()
         {
-            MyCalc calc = new("-2+2*3");
+            MyCalc calc = new("(-2)+2*3");
             string expectedValue = "4";
             string actualValue = calc.GetResult();
             Assert.AreEqual(expectedValue, actualValue);

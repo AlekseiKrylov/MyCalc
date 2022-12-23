@@ -66,7 +66,8 @@ namespace Task5
                     string tmpChekString = roundBracketsCollection[i].Groups[1].Value;
                     bool isMathEx = CheckSimpleMathFormula(tmpChekString);
                     if (!isMathEx)
-                        return false;
+                        if (!decimal.TryParse(tmpChekString, NumberStyles.Number, CultureInfo.InvariantCulture, out decimal number))
+                            return false;
                 }
 
                 checkString = Regex.Replace(checkString, PATTERN_ROUND_BRACKETS, replaseRoundBrackets);
@@ -133,7 +134,7 @@ namespace Task5
                 return CalculateSimpleMathFormula(left + resultCalculating + right);
             }
 
-            if (!decimal.TryParse(input, NumberStyles.Number, CultureInfo.InvariantCulture, out decimal numbevr))
+            if (!decimal.TryParse(input, NumberStyles.Number, CultureInfo.InvariantCulture, out decimal number))
                 throw new FormatException($"Exception. Wrong input string '{input}'");
 
             return decimal.Parse(input, CultureInfo.InvariantCulture);
@@ -164,6 +165,12 @@ namespace Task5
 
             foreach (string item in _listFromFile)
             {
+                if (string.IsNullOrEmpty(item))
+                {
+                    _resultListFromFile.Add(item);
+                    continue;
+                }
+
                 bool isMathEx = CheckMathFormula(item);
                 if (!isMathEx)
                     _resultListFromFile.Add($"{item} = Exception. Wrong input.");

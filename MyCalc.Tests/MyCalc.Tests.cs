@@ -1,4 +1,4 @@
-namespace Task5.Tests
+namespace MyCalc.Tests
 {
     [TestClass]
     public class MyCalcTests

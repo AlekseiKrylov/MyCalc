@@ -1,4 +1,4 @@
-﻿namespace Task5
+﻿namespace MyCalc
 {
     public class Program
     {
